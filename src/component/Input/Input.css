@@ -1,0 +1,33 @@
+.AccountInput {
+  height: 48px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.Input {
+  width: 100%;
+  height: 48px;
+  color: #1a1a1a;
+  line-height: 24px;
+  border: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.Input::-webkit-input-placeholder {
+    color: #8590a6;
+}
+
+.InputOnBlur {
+  width: 100%;
+  height: 48px;
+  color: #1a1a1a;
+  line-height: 24px;
+  border: none;
+  overflow: hidden;
+  background: transparent;
+}
+
+.InputOnBlur::-webkit-input-placeholder {
+  color: #f1403c;
+}

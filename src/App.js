@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import classNames from 'classnames';
-import Download from './component/Download';
-import Sign from './component/Sign';
+import Download from './component//Download/Download';
+import Sign from './component//Sign/Sign';
 
 class App extends Component {
     constructor(props) {

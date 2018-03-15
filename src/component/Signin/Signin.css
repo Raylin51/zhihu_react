@@ -1,0 +1,66 @@
+.Signin {
+  padding: 0 40px 36px;
+  text-align: center;
+}
+
+.long {
+  width: 100%;
+}
+
+.Password {
+  position: relative;
+  border-bottom: 1px solid #ebebeb;
+  margin-top: 12px;
+}
+
+.HasContent {
+  font-size: 24px;
+}
+
+.HasContent>input {
+  letter-spacing: 1.8px;
+}
+
+.Conspicuous>input {
+  letter-spacing: normal;
+  font-size: 14px;
+}
+
+.PasswordInput {
+  width: 80%;
+  height: 48px;
+  line-height: 24px;
+}
+
+.ChooseInconspicuous {
+  position: absolute;
+  top: 24px;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #8590a6;
+  padding: 0;
+}
+
+.ChooseInconspicuous:hover, .ChooseInconspicuous:active, .ChooseInconspicuous:focus {
+  color: #999;
+}
+
+.ChooseInconspicuous>svg {
+  fill: currentColor;
+}
+
+.ChooseInconspicuous>svg:hover {
+  fill: #999;
+}
+
+.Login-footer {
+  color: #8590a6;
+  line-height: 25px;
+  margin-top: 16px;
+}
+
+.FooterBtn:hover, .FooterBtn:active, .FooterBtn:focus {
+  color: #8590a6;
+  box-shadow: none;
+}

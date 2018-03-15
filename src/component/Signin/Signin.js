@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Input from './Input';
-import Submit from './Submit';
-import SelectCell from './SelectCell';
-import CaptchaBtn from './CaptchaBtn';
+import Input from '../Input/Input';
+import Submit from '../Submit/Submit';
+import './Signin.css';
 
 class Signin extends Component {
     constructor(props) {

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Input from './Input';
-import Submit from './Submit';
-import SelectCell from './SelectCell';
-import CaptchaBtn from './CaptchaBtn';
+import Input from '../Input/Input';
+import Submit from '../Submit/Submit';
+import SelectCell from '../SelectCell/SelectCell';
+import CaptchaBtn from '../CaptchaBtn/CaptchaBtn';
+import './Signup.css';
 
 class Signup extends Component {
     constructor(props) {

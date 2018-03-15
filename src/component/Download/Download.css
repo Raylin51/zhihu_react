@@ -1,0 +1,17 @@
+.Download {
+  width: 432px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.Download>button {
+  width: 100%;
+  background-color: #8590a6;
+  color: #fff;
+  height: 42px;
+}
+
+.Download>button:hover, .Download>button:active, .Download>button:focus {
+  box-shadow: none;
+  color: #fff;
+}
