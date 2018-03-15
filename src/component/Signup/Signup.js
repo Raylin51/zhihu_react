@@ -120,8 +120,8 @@ class Signup extends Component {
                 </div>
                 <Submit className="Register" text="注册"/>
                 <div className="Options">
-                    <button className="LeftBtn btn Gray" style={{outline: "none"}}>注册即代表你同意《知乎协议》</button>
-                    <button className="RightBtn btn Blue" style={{outline: "none"}}>注册机构号</button>
+                    <button className="LeftBtn btn Gray" style={{outline: "none"}} type="button">注册即代表你同意《知乎协议》</button>
+                    <button className="RightBtn btn Blue" style={{outline: "none"}} type="button">注册机构号</button>
                 </div>
             </div>
         );
