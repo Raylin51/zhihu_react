@@ -1,20 +1,22 @@
 .Background {
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  background-image: url(./image/bg.png);
-  background-color: #b8e5f8;
-  background-repeat: no-repeat;
-  background-size: cover;
-  overflow: hidden;
-  position: absolute;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-image: url(./image/bg.png);
+    background-color: #b8e5f8;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    position: absolute;
 }
 
 .Container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
+    width: 432px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    /* position: relative; */
 }

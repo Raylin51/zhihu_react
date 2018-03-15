@@ -49,61 +49,6 @@
   box-shadow: none;
 }
 
-.QRCodePage {
-  position: absolute;
-  z-index: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 0;
-  opacity: 0;
-  transition: opacity .3s,height .3s;
-}
-
-.Open {
-  height: 70%;
-  opacity: 1;
-}
-
-.QRCode {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  background-color: #fff;
-  background-size: 250px 250px;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  background-image: url(../../image/qrcode.png);
-  box-shadow: 0 0 8px 0 rgba(26,26,26,.15);
-  border-radius: 2px;
-}
-
-.QRCodePage::before {
-  content: "";
-  position: absolute;
-  bottom: -7px;
-  transform: translate(-50%) rotate(45deg);
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border-radius: 4px;
-}
-
-.QRCodePage::after {
-  box-shadow: 0 0 8px 0 rgba(26,26,26,.15);
-  z-index: -1;
-  content: "";
-  position: absolute;
-  bottom: -7px;
-  transform: translate(-50%) rotate(45deg);
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: #fff;
-  border-radius: 4px;
-}
-
 .Options {
   display: flex;
   justify-content: space-between;

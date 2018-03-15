@@ -39,9 +39,6 @@ class Sign extends Component {
                     {switchText}
                     <button className="btn" style={{outline: "none"}} onClick={() => this.setState({action: state ? "signin" : "signup"})}>{btnText}</button>
                 </div>
-                <div className={this.props.QRCodePage}>
-                    <div className="QRCode"></div>
-                </div>
             </div>
         );
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Input from '../Input/Input';
-import Submit from '../Submit/Submit';
 import './Signin.css';
 
 class Signin extends Component {
@@ -10,15 +9,10 @@ class Signin extends Component {
         this.state = {
             method: 'password',
             inconspicuous: true,
-            vaildNumber: true,
             phoneNumber: '',
             password: '',
             captcha: ''
         };
-    }
-
-    clearMessage = () => {
-        this.setState({validNumber: true});
     }
 
     handlePhoneNumberChange = (event) => {
@@ -56,7 +50,6 @@ class Signin extends Component {
                         placeHolderOnFocus='手机号或邮箱'
                         placeHolderOnBlur='请输入手机号或邮箱'
                         onChange={this.handlePhoneNumberChange}
-                        onFocus={this.clearMessage}
                     />
                 </div>
                 <div className="Password">
@@ -81,7 +74,9 @@ class Signin extends Component {
                     <button className="LeftBtn btn Blue" style={{outline: "none"}} type="button">手机验证码登录</button>
                     <button className="RightBtn btn Gray" style={{outline: "none"}} type="button">忘记密码？</button>
                 </div>
-                <Submit className="Register" text="登录"/>
+                <button className="Register" type="button">
+                    登录
+                </button>
                 <div className="Login-footer">
                     <span>
                         <button className="btn FooterBtn" style={{outline: "none"}} type="button">二维码登录</button>

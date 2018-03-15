@@ -31,6 +31,7 @@
 
 .dropdown-toggle:hover, .dropdown-toggle:active, .dropdown-toggle:focus {
   color: #8590a6;
+  box-shadow: none;
 }
 
 .arrow {
