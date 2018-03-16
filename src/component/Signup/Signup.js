@@ -13,8 +13,8 @@ class Signup extends Component {
             phoneNumber: '',
             captcha: '',
             getCaptcha: false,
-            getCaptchaText: '获取短信验证码',
             validNumber: true,
+            getCaptchaText: '获取短信验证码',
             tickTime: 60
         };
     }
@@ -37,21 +37,33 @@ class Signup extends Component {
         this.setState({validNumber: true});
     }
 
+    tickTime = (event) => {
+        this.setState({tickTime: this.state.tickTime - 1});
+    }
+
+    tickDone = (event) => {
+        this.setState({
+            getCaptcha: false,
+            tickTime: 60
+        });
+    }
+
+    validSuccess = (event) => {
+        this.setState({
+            getCaptchaText: '秒后可重发',
+            validNumber: true,
+            getCaptcha: true,
+            tickTime: this.state.tickTime - 1
+        });
+    }
+
+    validFaild = (event) => {
+        this.setState({
+            validNumber: false
+        });
+    }
+
     handleGetCaptcha = (event) => {
-        if (!(/^((1[3-8][0-9])+\d{8})$/.test(this.state.phoneNumber))){
-            this.setState({validNumber: false});
-        }
-        else {
-            this.setState({
-                getCaptcha: true,
-                getCaptchaText: '秒后可重发',
-                tickTime: this.state.tickTime - 1
-            });
-            this.timerID = setInterval(
-                () => this.tick(),
-                1000
-            );
-        }
     }
 
     handlePhoneNumberChange = (event) => {
@@ -64,7 +76,12 @@ class Signup extends Component {
 
     renderCell(area) {
         return(
-            <button value={area} onClick={() => this.setState({area: area})} type="button">
+            <button
+                value={area}
+                onClick={
+                    () => this.setState({area: area})
+                }
+                type="button">
                 {area}
             </button>
         );
@@ -96,6 +113,7 @@ class Signup extends Component {
         let message = this.state.validNumber ? "" : "请输入正确的手机号";
         let text = ((this.state.tickTime === 60) ? "" : this.state.tickTime) + this.state.getCaptchaText;
 
+
         return(
             <div className="Signup">
                 <div className="Account">
@@ -122,9 +140,11 @@ class Signup extends Component {
                         <ul
                             className="dropdown-menu"
                             aria-labelledby="dropdownMenu1">
-                            {areas.map((area) => {
+                            {areas.map((area, i) => {
                                 return(
-                                    <li>{this.renderCell(area)}</li>
+                                    <li key={'area_' + i} >
+                                        {this.renderCell(area, i)}
+                                    </li>
                                 );
                             })}
                         </ul>
@@ -148,16 +168,23 @@ class Signup extends Component {
                         onChange={this.handleCaptchaChange}/>
                     <CaptchaBtn
                         className={btnSMS}
-                        style={{outline: "none"}}
-                        onClick={this.handleGetCaptcha}
-                        disabled={disabled} text={text} />
+                        disabled={disabled}
+                        validFaild={ this.validFaild }
+                        validSuccess={ this.validSuccess }
+                        tickDone={ this.tickDone }
+                        tickTime={ this.tickTime }
+                        phoneNumber={ this.state.phoneNumber }
+                        text={ text } />
                 </div>
                 <div className={call}>
                     <CaptchaBtn
-                        className={btnCall}
-                        style={{outline: "none"}}
-                        onClick={this.handleGetCaptcha}
-                        disabled={disabled} text="接收语音验证码" />
+                        className={ btnCall }
+                        disabled={ disabled }
+                        validFaild={ this.validFaild }
+                        validSuccess={ this.validSuccess }
+                        tickTime={ this.tickTime }
+                        phoneNumber={ this.state.phoneNumber }
+                        text='接收语音验证码' />
                 </div>
                 <button className="Register" type="button">
                     注册
