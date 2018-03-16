@@ -1,18 +1,56 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Input from '../Input/Input';
+// import Input from '../Input/Input';
 import './Signin.css';
 
 class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            method: 'password',
             inconspicuous: true,
             phoneNumber: '',
             password: '',
-            captcha: ''
+            inputOneError: false,
+            inputTwoError: false
         };
+    }
+
+    inputOneOnBlur = (event) => {
+        if (event.target.value === '') {
+            this.setState({
+                inputOneError: true
+            });
+        }
+        else {
+            this.setState({
+                inputOneError: false
+            });
+        }
+    }
+
+    inputOneOnFocus = (event) => {
+        this.setState({
+            inputOneError: false
+        });
+    }
+
+    inputTwoOnBlur = (event) => {
+        if (event.target.value === '') {
+            this.setState({
+                inputTwoError: true
+            });
+        }
+        else {
+            this.setState({
+                inputTwoError: false
+            });
+        }
+    }
+
+    inputTwoOnFocus = (event) => {
+        this.setState({
+            inputTwoError: false
+        });
     }
 
     handlePhoneNumberChange = (event) => {
@@ -30,36 +68,54 @@ class Signin extends Component {
     render() {
         let AccountInput = classNames({
             AccountInput: true,
-            long: (this.state.method === 'password')
+            long: true
         });
-
         let PasswordInput = classNames({
             Password: true,
             Inconspicuous: this.state.inconspicuous,
             Conspicuous: !this.state.inconspicuous,
             HasContent: !(this.state.password === '')
         });
+        let intputOneClassName = classNames({
+            Input: !this.state.inputOneError,
+            InputOnBlur: this.state.inputOneError
+        });
+        let inputTwoClassName = classNames({
+            Input: !this.state.inputTwoError,
+            InputOnBlur: this.state.inputTwoError
+        });
 
         let type = this.state.inconspicuous ? 'password' : '';
+        let inputOnePlaceHolder = this.state.inputOneError ? "请输入手机号" : "手机号";
+        let inputTwoPlaceHolder = this.state.inputTwoError ? "请输入密码" : "密码";
 
         return(
             <div className="Signin">
                 <div className="Account">
-                    <Input
-                        className={AccountInput}
-                        placeHolderOnFocus='手机号或邮箱'
-                        placeHolderOnBlur='请输入手机号或邮箱'
-                        onChange={this.handlePhoneNumberChange}
-                    />
+                    <div className={ AccountInput }>
+                        <input
+                            value={ this.state.phoneNumber }
+                            className={ intputOneClassName }
+                            placeholder={ inputOnePlaceHolder }
+                            onBlur={ this.inputOneOnBlur }
+                            onFocus={ this.inputOneOnFocus }
+                            onChange={ this.handlePhoneNumberChange }>
+                        </input>
+                    </div>
                 </div>
                 <div className="Password">
-                    <Input
-                        className={PasswordInput}
-                        placeHolderOnFocus='密码'
-                        placeHolderOnBlur='请输入密码'
-                        onChange={this.handlePasswordChange}
-                        type={type}
-                    />
+                    <div className={ PasswordInput }>
+                        <input
+                            value={ this.state.password }
+                            className={ inputTwoClassName }
+                            placeholder={ inputTwoPlaceHolder }
+                            onBlur={ this.inputTwoOnBlur }
+                            onFocus={ this.inputTwoOnFocus }
+                            onChange={ this.handlePasswordChange }
+                            type={type}>
+                        </input>
+                    </div>
+
                   <button className="btn ChooseInconspicuous" style={{outline: "none", boxShadow: "none"}} onClick={this.chooseInconspicuous} type="button">
                         <svg width="24" height="20" viewBox="0 0 24 24" style={{verticalAlign: "middle", height: "20px", "width": "24px"}}>
                             {this.state.inconspicuous ? (

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import Input from '../Input/Input';
-// import SelectCell from '../SelectCell/SelectCell';
 import CaptchaBtn from '../CaptchaBtn/CaptchaBtn';
 import './Signup.css';
 
@@ -15,22 +13,48 @@ class Signup extends Component {
             getCaptcha: false,
             validNumber: true,
             getCaptchaText: '获取短信验证码',
-            tickTime: 60
+            tickTime: 60,
+            inputOneError: false,
+            inputTwoError: false
         };
     }
 
-    tick() {
-        if (this.state.tickTime === 0) {
-            clearInterval(this.timerID);
+    inputOneOnBlur = (event) => {
+        if (event.target.value === '') {
             this.setState({
-                getCaptcha: false,
-                getCaptchaText: '获取短信验证码',
-                tickTime: 60
+                inputOneError: true
             });
         }
         else {
-            this.setState({tickTime: this.state.tickTime - 1});
+            this.setState({
+                inputOneError: false
+            });
         }
+    }
+
+    inputOneOnFocus = (event) => {
+        this.setState({
+            inputOneError: false
+        });
+    }
+
+    inputTwoOnBlur = (event) => {
+        if (event.target.value === '') {
+            this.setState({
+                inputTwoError: true
+            });
+        }
+        else {
+            this.setState({
+                inputTwoError: false
+            });
+        }
+    }
+
+    inputTwoOnFocus = (event) => {
+        this.setState({
+            inputTwoError: false
+        });
     }
 
     clearMessage = () => {
@@ -109,10 +133,20 @@ class Signup extends Component {
             Call: true,
             Hidden: this.state.getCaptcha,
         });
+        let intputOneClassName = classNames({
+            Input: !this.state.inputOneError,
+            InputOnBlur: this.state.inputOneError
+        });
+        let inputTwoClassName = classNames({
+            Input: !this.state.inputTwoError,
+            InputOnBlur: this.state.inputTwoError
+        });
+
         let disabled = this.state.getCaptcha ? "disabled" : "" ;
         let message = this.state.validNumber ? "" : "请输入正确的手机号";
         let text = ((this.state.tickTime === 60) ? "" : this.state.tickTime) + this.state.getCaptchaText;
-
+        let inputOnePlaceHolder = this.state.inputOneError ? "请输入手机号" : "手机号";
+        let inputTwoPlaceHolder = this.state.inputTwoError ? "请输入短信验证码" : "请输入6位短信验证码";
 
         return(
             <div className="Signup">
@@ -150,22 +184,36 @@ class Signup extends Component {
                         </ul>
                     </div>
                     <span className="AccountSeperator">&nbsp;</span>
-                    <Input
-                        className='AccountInput'
-                        placeHolderOnFocus='手机号'
-                        placeHolderOnBlur='请输入手机号'
-                        onChange={this.handlePhoneNumberChange}
-                        onFocus={this.clearMessage}/>
+                    <div className="AccountInput">
+                        <input
+                            value={ this.state.phoneNumber }
+                            className={ intputOneClassName }
+                            placeholder={ inputOnePlaceHolder }
+                            onBlur={ this.inputOneOnBlur }
+                            onFocus={ () => {
+                                this.inputOneOnFocus();
+                                this.clearMessage();
+                            }}
+                            onChange={ this.handlePhoneNumberChange }>
+                        </input>
+                    </div>
+
                     <div className="Message">
                         {message}
                     </div>
                 </div>
                 <div className="Captcha">
-                    <Input
-                        className='CaptchaInput'
-                        placeHolderOnFocus='请输入6位短信验证码'
-                        placeHolderOnBlur='请输入短信验证码'
-                        onChange={this.handleCaptchaChange}/>
+                    <div className="CaptchaInput">
+                        <input
+                            value={ this.state.captcha }
+                            className={ inputTwoClassName }
+                            placeholder={ inputTwoPlaceHolder }
+                            onBlur={ this.inputTwoOnBlur}
+                            onFocus={ this.inputTwoOnFocus }
+                            onChange={ this.handleCaptchaChange }>
+                        </input>
+                    </div>
+
                     <CaptchaBtn
                         className={btnSMS}
                         disabled={disabled}
