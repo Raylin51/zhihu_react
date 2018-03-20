@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './CaptchaBtn.css';
+import PropTypes from 'prop-types';
 
 class CaptchaBtn extends Component {
     constructor(props) {
@@ -45,5 +46,14 @@ class CaptchaBtn extends Component {
         );
     }
 }
+
+CaptchaBtn.propTypes = {
+    className: PropTypes.string,
+    disabled: PropTypes.string,
+    validFaild: PropTypes.func,
+    validSuccess: PropTypes.func,
+    tickTime: PropTypes.func,
+    phoneNumber: PropTypes.string
+};
 
 export default CaptchaBtn;
