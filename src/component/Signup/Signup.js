@@ -71,12 +71,8 @@ class Signup extends Component {
     handleGetCaptcha = (event) => {
     }
 
-    handlePhoneNumberChange = (event) => {
-        this.setState({phoneNumber: event.target.value});
-    }
-
-    handleCaptchaChange = (event) => {
-        this.setState({captcha: event.target.value});
+    handleInputChange = (key, event) => {
+        this.setState({[key]: event.target.value});
     }
 
     renderCell(area) {
@@ -175,7 +171,7 @@ class Signup extends Component {
                                 this.inputOnFocus('inputOneError');
                                 this.clearMessage();
                             }}
-                            onChange={ this.handlePhoneNumberChange }>
+                            onChange={ this.handleInputChange.bind(this, 'phoneNumber') }>
                         </input>
                     </div>
 
@@ -191,7 +187,7 @@ class Signup extends Component {
                             placeholder={ inputTwoPlaceHolder }
                             onBlur={ this.inputOnBlur.bind(this, 'inputTwoError')}
                             onFocus={ this.inputOnFocus.bind(this, 'inputTwoError') }
-                            onChange={ this.handleCaptchaChange }>
+                            onChange={ this.handleInputChange.bind(this, 'captcha') }>
                         </input>
                     </div>
 

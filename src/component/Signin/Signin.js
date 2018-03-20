@@ -34,12 +34,8 @@ class Signin extends Component {
         });
     }
 
-    handlePhoneNumberChange = (event) => {
-        this.setState({phoneNumber: event.target.value});
-    }
-
-    handlePasswordChange = (event) => {
-        this.setState({password: event.target.value});
+    handleInputChange(key, event) {
+        this.setState({[key]: event.target.value});
     }
 
     chooseInconspicuous = (event) => {
@@ -80,7 +76,7 @@ class Signin extends Component {
                             placeholder={ inputOnePlaceHolder }
                             onBlur={ this.inputOnBlur.bind(this, 'inputOneError') }
                             onFocus={ this.inputOnFocus.bind(this, 'inputOneError') }
-                            onChange={ this.handlePhoneNumberChange }>
+                            onChange={ this.handleInputChange.bind(this, 'phoneNumber') }>
                         </input>
                     </div>
                 </div>
@@ -92,7 +88,7 @@ class Signin extends Component {
                             placeholder={ inputTwoPlaceHolder }
                             onBlur={ this.inputOnBlur.bind(this, 'inputTwoError') }
                             onFocus={ this.inputOnFocus.bind(this, 'inputTwoError') }
-                            onChange={ this.handlePasswordChange }
+                            onChange={ this.handleInputChange.bind(this, 'password') }
                             type={type}>
                         </input>
                     </div>
