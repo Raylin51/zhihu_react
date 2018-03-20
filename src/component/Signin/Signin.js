@@ -15,41 +15,22 @@ class Signin extends Component {
         };
     }
 
-    inputOneOnBlur = (event) => {
+    inputOnBlur(key, event) {
         if (event.target.value === '') {
             this.setState({
-                inputOneError: true
+                [key]: true
             });
         }
         else {
             this.setState({
-                inputOneError: false
+                [key]: false
             });
         }
     }
 
-    inputOneOnFocus = (event) => {
+    inputOnFocus(key, event) {
         this.setState({
-            inputOneError: false
-        });
-    }
-
-    inputTwoOnBlur = (event) => {
-        if (event.target.value === '') {
-            this.setState({
-                inputTwoError: true
-            });
-        }
-        else {
-            this.setState({
-                inputTwoError: false
-            });
-        }
-    }
-
-    inputTwoOnFocus = (event) => {
-        this.setState({
-            inputTwoError: false
+            [key]: false
         });
     }
 
@@ -97,8 +78,8 @@ class Signin extends Component {
                             value={ this.state.phoneNumber }
                             className={ intputOneClassName }
                             placeholder={ inputOnePlaceHolder }
-                            onBlur={ this.inputOneOnBlur }
-                            onFocus={ this.inputOneOnFocus }
+                            onBlur={ this.inputOnBlur.bind(this, 'inputOneError') }
+                            onFocus={ this.inputOnFocus.bind(this, 'inputOneError') }
                             onChange={ this.handlePhoneNumberChange }>
                         </input>
                     </div>
@@ -109,8 +90,8 @@ class Signin extends Component {
                             value={ this.state.password }
                             className={ inputTwoClassName }
                             placeholder={ inputTwoPlaceHolder }
-                            onBlur={ this.inputTwoOnBlur }
-                            onFocus={ this.inputTwoOnFocus }
+                            onBlur={ this.inputOnBlur.bind(this, 'inputTwoError') }
+                            onFocus={ this.inputOnFocus.bind(this, 'inputTwoError') }
                             onChange={ this.handlePasswordChange }
                             type={type}>
                         </input>
